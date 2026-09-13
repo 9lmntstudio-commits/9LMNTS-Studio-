@@ -1,0 +1,63 @@
+{
+  "function_declarations": [
+    {
+      "name": "query_pricing_and_payment_plans",
+      "description": "Query official 9LMNTS Studio pricing, scope of deliverables, and PayPal Pay Later / Pay in 4 installment payment plans across Agency Sprints, Monthly Retainers, 9LMNTS OS Series, and Live Competition Arenas.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "service_category": {
+            "type": "STRING",
+            "enum": ["agency_sprints", "monthly_retainers", "os_series", "competition_arenas"],
+            "description": "The category of 9LMNTS Studio service to look up."
+          },
+          "tier_name": {
+            "type": "STRING",
+            "description": "Specific tier name such as 'starter', 'pro_custom', 'enterprise', 'premier_operations', 'vip_table'."
+          },
+          "payment_preference": {
+            "type": "STRING",
+            "enum": ["pay_in_full", "pay_in_4_installments", "monthly_subscription"],
+            "description": "Client's desired payment plan mode handled via PayPal E-Commerce Services."
+          }
+        },
+        "required": ["service_category"]
+      }
+    },
+    {
+      "name": "create_paypal_ecommerce_order",
+      "description": "Creates a verified PayPal E-Commerce order session and payment plan link via the 9LMNTS Studio n8n execution engine.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "service_title": {
+            "type": "STRING",
+            "description": "Name of the sprint, retainer, or competition pass (e.g. 'Starter Sprint', 'Pro Retainer', 'VIP Table & Bottle Service')."
+          },
+          "amount_cad": {
+            "type": "NUMBER",
+            "description": "Total amount in CAD (e.g. 1500, 2500, 5000, 20, 50, 150)."
+          },
+          "payment_plan_type": {
+            "type": "STRING",
+            "enum": ["pay_in_full", "pay_in_4", "monthly_recurring"],
+            "description": "Select 'pay_in_4' for interest-free bi-weekly installments, 'pay_in_full' for standard checkout, or 'monthly_recurring' for retainers."
+          },
+          "client_name": {
+            "type": "STRING",
+            "description": "Client full name or company entity."
+          },
+          "client_email": {
+            "type": "STRING",
+            "description": "Client email address for PayPal order confirmation and invoice delivery."
+          },
+          "project_notes": {
+            "type": "STRING",
+            "description": "Optional notes or requirements for the sprint or live arena."
+          }
+        },
+        "required": ["service_title", "amount_cad", "payment_plan_type", "client_email"]
+      }
+    }
+  ]
+}

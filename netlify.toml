@@ -1,0 +1,34 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/clash"
+  to = "/competition-suite/01_Sound_Clash_OS.html"
+  status = 200
+
+[[redirects]]
+  from = "/arenas"
+  to = "/competition-suite/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/comedy"
+  to = "/competition-suite/02_Comedian_OS_Roast_Battle.html"
+  status = 200
+
+[[redirects]]
+  from = "/bars"
+  to = "/competition-suite/03_Bars_OS_Battle_Rap.html"
+  status = 200
+
+[[redirects]]
+  from = "/sports"
+  to = "/competition-suite/06_Hoops_OS_3v3_Streetball.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"

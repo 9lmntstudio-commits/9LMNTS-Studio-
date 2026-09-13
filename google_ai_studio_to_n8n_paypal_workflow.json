@@ -1,0 +1,68 @@
+{
+  "name": "9LMNTS Studio - Google AI Studio to n8n (PayPal E-Commerce Engine)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "google-ai-studio-paypal",
+        "options": {}
+      },
+      "name": "Google AI Studio Ingress Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        180,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// 9LMNTS Studio Canonical Pricing & PayPal E-Commerce Engine\nconst body = $input.item.json.body || $input.item.json;\nconst action = body.action || (body.function_name || 'create_paypal_ecommerce_order');\nconst params = body.parameters || body;\n\nconst pricingMatrix = {\n  'starter_sprint': { title: 'Starter Sprint', amount: 1500, payIn4: true },\n  'pro_custom_sprint': { title: 'Pro Custom Sprint', amount: 2500, payIn4: true },\n  'enterprise_build': { title: 'Enterprise Scale Build', amount: 5000, payIn4: false },\n  'pro_retainer': { title: 'Pro Monthly Retainer', amount: 1500, recurring: true },\n  'premier_retainer': { title: 'Premier Operations Retainer', amount: 2500, recurring: true },\n  'enterprise_retainer': { title: 'Enterprise Custom Retainer', amount: 5000, recurring: true },\n  'box_01_cover': { title: 'General Admission Cover & Ballot', amount: 20, payIn4: true },\n  'box_02_tip': { title: 'Micro-Tip & Drink Credit', amount: 10, payIn4: false },\n  'box_03_hype': { title: 'Power Hype Pack (25x Votes)', amount: 50, payIn4: true },\n  'box_04_vip': { title: 'VIP Hospitality Table', amount: 150, payIn4: true }\n};\n\nlet itemTitle = params.service_title || 'Agency Sprint / Pass';\nlet amount = parseFloat(params.amount_cad || 1500);\nlet planType = params.payment_plan_type || 'pay_in_4';\nlet clientEmail = params.client_email || 'client@example.com';\nlet clientName = params.client_name || 'Valued Client';\n\nlet installmentBreakdown = null;\nif (amount >= 20 && amount <= 3500) {\n  const perInstallment = (amount / 4).toFixed(2);\n  installmentBreakdown = {\n    plan_name: 'PayPal Pay in 4',\n    installments: 4,\n    amount_per_installment: `$${perInstallment} CAD`,\n    frequency: 'Bi-weekly',\n    interest_rate: '0% APR',\n    total_financed: `$${amount.toFixed(2)} CAD`\n  };\n}\n\nconst txnRef = 'PAYID-' + Math.random().toString(36).substring(2, 10).toUpperCase();\nconst checkoutSessionUrl = `https://www.paypal.com/checkoutnow?token=EC-${txnRef}&client_email=${encodeURIComponent(clientEmail)}&amt=${amount}&plan=${planType}`;\n\nreturn {\n  json: {\n    status: 'success',\n    timestamp: new Date().toISOString(),\n    order_id: txnRef,\n    client: {\n      name: clientName,\n      email: clientEmail\n    },\n    service: {\n      title: itemTitle,\n      total_amount_cad: amount,\n      payment_plan_selected: planType,\n      paypal_pay_in_4_details: installmentBreakdown\n    },\n    paypal_checkout_url: checkoutSessionUrl,\n    settlement_rail: 'PayPal E-Commerce Services (Complete Payments Platform)',\n    message: `Order for ${itemTitle} initialized. Total: $${amount} CAD. Pay in 4 option: ${installmentBreakdown ? installmentBreakdown.amount_per_installment + ' every 2 weeks' : 'N/A'}. Proceed to checkout.`\n  }\n};"
+      },
+      "name": "PayPal E-Commerce Calculator & Order Engine",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "name": "Return Response to Google AI Studio",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        680,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Google AI Studio Ingress Webhook": {
+      "main": [
+        [
+          {
+            "node": "PayPal E-Commerce Calculator & Order Engine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PayPal E-Commerce Calculator & Order Engine": {
+      "main": [
+        [
+          {
+            "node": "Return Response to Google AI Studio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "agency": "9LMNTS Studio",
+  "founder": "Darnley Sanon",
+  "domain": "9lmntsstudio.com",
+  "currency": "CAD",
+  "payment_processor": "PayPal E-Commerce Services",
+  "payment_features": [
+    "PayPal Complete Payments",
+    "PayPal Pay Later (Pay in 4)",
+    "PayPal Monthly Installments",
+    "PayPal Subscriptions (Recurring Billing)",
+    "Smart Payment Buttons"
+  ],
+  "pricing_structure": {
+    "agency_sprints": {
+      "starter": {
+        "title": "Starter Sprint",
+        "price": 1500,
+        "billing_type": "one_time_or_installment",
+        "paypal_pay_in_4": {
+          "eligible": true,
+          "installments": 4,
+          "per_installment": 375.00,
+          "interest_rate": "0%"
+        },
+        "deliverables": [
+          "Figma Design System & Brand Tokens",
+          "Mobile-First Glassmorphic Dark UI",
+          "Netlify/Vercel Instant Deployment",
+          "ManyChat Social Lead Capture Funnel"
+        ]
+      },
+      "pro_custom": {
+        "title": "Pro Custom Sprint",
+        "price": 2500,
+        "max_price": 3500,
+        "billing_type": "one_time_or_installment",
+        "paypal_pay_in_4": {
+          "eligible": true,
+          "installments": 4,
+          "per_installment": 625.00,
+          "interest_rate": "0%"
+        },
+        "deliverables": [
+          "Full Web App or Vertical Creator OS",
+          "ManyChat DM Funnel + n8n Orchestration",
+          "Supabase Database & Lead Sync",
+          "WebAR Interactive Asset Integration",
+          "14-Day Priority Technical Support"
+        ]
+      },
+      "enterprise_scale": {
+        "title": "Enterprise Scale Build",
+        "price": 5000,
+        "billing_type": "one_time_or_installment",
+        "paypal_pay_in_4": {
+          "eligible": false,
+          "alternative_plan": "PayPal Monthly Installment Financing"
+        },
+        "deliverables": [
+          "Bespoke Multi-Tenant OS Engine",
+          "Domain-Specific Autonomous AI Agents",
+          "Complete 3D WebAR & Brand Identity",
+          "Dedicated Production Architect & SLA"
+        ]
+      }
+    },
+    "monthly_retainers": {
+      "pro": {
+        "title": "Pro Retainer",
+        "price": 1500,
+        "frequency": "monthly",
+        "billing_type": "recurring_subscription",
+        "deliverables": [
+          "Monthly UI/UX Enhancements & Design",
+          "Platform & Asset Maintenance",
+          "Remote Live-Event Technical Support (1 event/mo)"
+        ]
+      },
+      "premier_operations": {
+        "title": "Premier Operations Retainer",
+        "price": 2500,
+        "max_price": 3500,
+        "frequency": "monthly",
+        "billing_type": "recurring_subscription",
+        "deliverables": [
+          "Bi-Weekly Feature Sprints",
+          "Dedicated On-Site Venue Operator (2 events/mo)",
+          "Live Jumbotron Sync & Arena Telemetry",
+          "Priority Emergency SLA"
+        ]
+      },
+      "enterprise_custom": {
+        "title": "Enterprise Custom Retainer",
+        "price": 5000,
+        "frequency": "monthly",
+        "billing_type": "recurring_subscription",
+        "deliverables": [
+          "Full Bespoke Studio Engineering",
+          "Dedicated On-Site Operator for All Client Events",
+          "White-Label Architecture & Scaling",
+          "24/7 Dedicated Priority Technical SLA"
+        ]
+      }
+    },
+    "os_series": {
+      "free_performance": {
+        "title": "Free Performance Tier",
+        "upfront": 0,
+        "revenue_split": "80/20",
+        "creator_share": "80%",
+        "studio_share": "20%",
+        "payout_rail": "PayPal E-Commerce Direct Split"
+      },
+      "monthly_maintenance": {
+        "title": "Monthly OS Maintenance & Updates",
+        "price": 500,
+        "frequency": "monthly",
+        "billing_type": "recurring_subscription"
+      },
+      "pro_os": {
+        "title": "Pro OS Setup",
+        "setup_fee": 500,
+        "revenue_split": "90/10",
+        "monthly_maintenance": 250
+      },
+      "elite_os": {
+        "title": "Elite OS Setup",
+        "setup_fee": 1500,
+        "revenue_split": "95/5",
+        "monthly_maintenance": 500,
+        "paypal_pay_in_4": {
+          "eligible": true,
+          "per_installment": 375.00
+        }
+      },
+      "enterprise_os": {
+        "title": "Enterprise Custom OS",
+        "setup_fee": 5000,
+        "revenue_split": "100/0",
+        "monthly_maintenance": 500
+      }
+    },
+    "universal_in_venue_grid": {
+      "box_01": {
+        "name": "General Admission Cover & Ballot",
+        "price": 20,
+        "pay_in_4": "4x $5.00 CAD"
+      },
+      "box_02": {
+        "name": "Micro-Tip & Feature Drink Token",
+        "price": 10,
+        "type": "Direct Contender Appreciation"
+      },
+      "box_03": {
+        "name": "Power Hype Pack (25x Votes + Screen Sync)",
+        "price": 50,
+        "pay_in_4": "4x $12.50 CAD"
+      },
+      "box_04": {
+        "name": "VIP Hospitality Table & Bottle Service",
+        "price": 150,
+        "max_price": 250,
+        "pay_in_4": "4x $37.50 CAD"
+      }
+    }
+  }
+}

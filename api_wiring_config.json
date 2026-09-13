@@ -1,0 +1,53 @@
+{
+  "project": "9LMNTS Studio & 9LMNTS OS",
+  "github_repository": "https://github.com/9lmntstudio-commits/9LMNTS-Studio-",
+  "primary_domain": "9lmntsstudio.com",
+  "api_connections": {
+    "google_ai_studio": {
+      "service": "Google Gemini 1.5 Pro / Flash",
+      "env_var": "GEMINI_API_KEY",
+      "role": "LLM agent reasoning, function calling, and user query synthesis in Google AI Studio",
+      "endpoint": "https://generativelanguage.googleapis.com/v1beta"
+    },
+    "n8n_cloud": {
+      "service": "n8n Workflow Automation (loabrain)",
+      "env_var": "N8N_HOST",
+      "base_url": "https://loabrain.app.n8n.cloud",
+      "mcp_server_url": "https://loabrain.app.n8n.cloud/mcp-server/http",
+      "webhook_endpoint": "https://loabrain.app.n8n.cloud/webhook/google-ai-studio-paypal",
+      "role": "Central orchestration middleware receiving tool calls from Google AI Studio and managing PayPal orders, Supabase writes, and lead routing"
+    },
+    "paypal_ecommerce": {
+      "service": "PayPal E-Commerce Services (Complete Payments Platform)",
+      "merchant_account": "9lmntstudio@gmail.com",
+      "env_var": "PAYPAL_CLIENT_ID",
+      "payment_plan_engine": "PayPal Pay Later / Pay in 4",
+      "recurring_billing_engine": "PayPal Subscriptions API",
+      "role": "Exclusive payment processing and installment plan provider across all 9LMNTS Studio services"
+    },
+    "manychat": {
+      "service": "ManyChat Social Lead Funnel",
+      "env_var": "MANYCHAT_API_TOKEN",
+      "keywords": ["DEV", "CLASH", "BALLER", "ARTIST", "SPONSOR"],
+      "role": "Instagram / Messenger automated DM intake routing to n8n webhook"
+    },
+    "supabase": {
+      "service": "Supabase PostgreSQL Database",
+      "env_var": "SUPABASE_URL",
+      "url": "https://vfrxxfviaykafzbxpehw.supabase.co",
+      "tables": ["leads", "arena_participants", "live_votes", "paypal_orders"],
+      "role": "Persistent database storing customer records, lead qualification, and verified PayPal transaction logs"
+    },
+    "github": {
+      "service": "GitHub CI/CD Version Control",
+      "repo_url": "https://github.com/9lmntstudio-commits/9LMNTS-Studio-",
+      "env_var": "GITHUB_TOKEN",
+      "role": "Source code repository for 9LMNTS Studio website, 25 competition OS platforms, and API workflows"
+    },
+    "netlify": {
+      "service": "Netlify Edge Hosting & Auto-Builds",
+      "env_var": "NETLIFY_AUTH_TOKEN",
+      "role": "Automated deployment on git push to 9LMNTS-Studio- repo"
+    }
+  }
+}
